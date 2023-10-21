@@ -32,7 +32,24 @@ export const fetchNewsWithQuery = async (query) => {
 
     } catch (error) {
         console.log('Fetching data from api got reject due to some reason.');
+        return [];
     }
 };
 
 
+export const fetchSingleNews = async (objectID) => {
+    const url = 'http://hn.algolia.com/api/v1/items/';
+    try {
+        const response = await fetch(`${url}${objectID}`, {
+            method: "GET",
+            headers: headersList
+        });
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.log('Fetching data from api got reject due to some reason.');
+        return [];
+    }
+};

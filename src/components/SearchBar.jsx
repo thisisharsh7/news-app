@@ -1,15 +1,19 @@
 import { Icon } from "@iconify/react";
 import { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { SETQUERY } from "../state/reducers";
 
 
 const SearchBar = () => {
+    const dispatch = useDispatch();
     const inputRef = useRef();
 
 
     const handleClick = () => {
         const input = inputRef.current.value;
-        console.log(input);
+        dispatch(SETQUERY(input));
     }
+
     return (
         <div className="shadow-lg bg-white border-[1px]  border-white rounded-2xl px-5 py-2 ">
             <div className="flex sm:gap-5 items-center ">
