@@ -6,11 +6,13 @@ const App = () => {
 
 
   return (
-    <div className="container mx-auto bg-gray-200">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+    <div className=" bg-gray-200">
+      <div className="container mx-auto">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
     </div >
 
   )
