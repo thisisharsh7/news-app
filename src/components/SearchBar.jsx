@@ -12,6 +12,14 @@ const SearchBar = () => {
     const handleClick = () => {
         const input = inputRef.current.value;
         dispatch(SETQUERY(input));
+        inputRef.current.value = "";
+    }
+
+    const handleEnter = (e) => {
+        if (e.key === "Enter") {
+            handleClick();
+        }
+
     }
 
     return (
@@ -21,7 +29,7 @@ const SearchBar = () => {
                     <img src="logo.png" alt="" className="w-full" />
                 </a>
                 <div className="bg-white px-3 py-1.5 justify-between rounded-full items-center gap-4 text-zinc-500  w-full flex    ">
-                    <input type="text" className="w-full outline-none" placeholder="Search News" ref={inputRef} />
+                    <input type="text" className="w-full outline-none" placeholder="Search News" ref={inputRef} onKeyDown={handleEnter} />
                     <button onClick={handleClick} className="hover:text-2xl text-xl transition-all duration-300"><Icon icon="heroicons:magnifying-glass-20-solid" /></button>
                 </div>
             </div>

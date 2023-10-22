@@ -3,6 +3,7 @@ import Comment from "../components/Comment"
 import { Link, useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { fetchSingleNews } from "../service/api";
+import { BeatLoader } from "react-spinners";
 
 
 const Detail = () => {
@@ -26,14 +27,14 @@ const Detail = () => {
     }, [])
 
     return (
-        <div className=" px-7 pt-4 pb-20 w-full min-h-screen flex flex-col items-center ">
+        <div className=" sm:px-6 px-3 pt-4 pb-20 w-full min-h-screen flex flex-col items-center ">
             <Link to="/" className="border-2 border-black sticky top-4 z-40 bg-gray-200 text-2xl ">
                 <Icon icon="pixelarticons:close" className="  text-red-800 hover:animate-spin" />
             </Link>
             {
                 getDet
                     ?
-                    <div className="flex flex-col gap-8">
+                    <div className="flex flex-col gap-8 w-full">
                         <div className="px-3 py-3.5 grid grid-cols-[1fr,110px] text-base gap-4 h-full">
                             <div className="flex items-center gap-1 text-lime-900 ">
                                 <Icon icon="mdi:account-circle-outline" className="text-2xl " />
@@ -58,17 +59,20 @@ const Detail = () => {
                             <h2 className="text-xl font-bold mb-5">Comments-</h2>
                             <div className="w-full gap-8 grid sm:grid-cols-2">
                                 {
-                                    getDet.comments && getDet.comments.map((comment, index) => {
+
+                                    getDet?.comments.length ? getDet.comments.map((comment, index) => {
                                         return (
                                             <Comment key={index} author={comment.author} text={comment.text} />
                                         )
                                     })
+                                        :
+                                        <div className="text-center italic col-span-full">No comment found..</div>
                                 }
                             </div>
                         </div>
                     </div>
                     :
-                    <div>loading...</div>
+                    <div className=" self-center pt-10"><BeatLoader color='orange' size={10} speedMultiplier={1.2} /></div>
             }
 
         </div>

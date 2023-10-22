@@ -4,6 +4,7 @@ import SearchBar from "../components/SearchBar"
 import { fetchNewsWithQuery, fetchNewsWithTag } from "../service/api"
 import { useDispatch, useSelector } from "react-redux"
 import { SETLOADING, SETNEWS } from "../state/reducers"
+import { BeatLoader } from "react-spinners"
 
 
 const Home = () => {
@@ -17,7 +18,9 @@ const Home = () => {
     } else {
       data = await fetchNewsWithQuery(searchQuery);
     }
+
     dispatch(SETNEWS(data.hits));
+    
   }
 
 
@@ -27,10 +30,10 @@ const Home = () => {
   }, [searchQuery])
 
   return (
-    <div className="flex flex-col md:p-6 sm:p-5 p-2 w-full min-h-screen gap-8">
+    <div className="flex flex-col md:p-6 sm:p-5 p-3 pt-4 pb-20 w-full min-h-screen gap-12">
       <SearchBar />
       {
-        loading ? 'loading ...' : <NewsPanel />
+        loading ? <div className=" self-center"><BeatLoader color='orange' size={10} speedMultiplier={1.2} /></div> : <NewsPanel />
       }
     </div>
   )
