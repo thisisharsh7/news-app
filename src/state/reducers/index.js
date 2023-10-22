@@ -7,19 +7,27 @@ export const news = createSlice({
     initialState: {
         loading: true,
         newsArray: [],
-        searchQuery: ""
+        searchQuery: "",
+        cPage: 1,
+        tPage: 0,
     },
     reducers: {
         SETNEWS: (state, action) => {
             return { ...state, newsArray: action.payload, loading: false };
         },
         SETQUERY: (state, action) => {
-            return { ...state, searchQuery: action.payload };
+            return { ...state, searchQuery: action.payload, cPage: 1 };
         },
         SETLOADING: (state, action) => {
             return { ...state, loading: action.payload };
+        },
+        SETPAGE: (state, action) => {
+            return { ...state, cPage: action.payload }
+        },
+        TOTALPAGE: (state, action) => {
+            return { ...state, tPage: action.payload }
         }
     }
 })
-export const { SETNEWS, SETQUERY, SETLOADING } = news.actions;
+export const { SETNEWS, SETQUERY, SETLOADING, SETPAGE, TOTALPAGE } = news.actions;
 export default news.reducer;

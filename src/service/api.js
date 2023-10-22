@@ -3,10 +3,10 @@ let headersList = {
     "User-Agent": "Thunder Client (https://www.thunderclient.com)"
 }
 
-export const fetchNewsWithTag = async () => {
-    const url = 'http://hn.algolia.com/api/v1/search?tags=front_page';
+export const fetchNewsWithTag = async (page) => {
+    const url = 'http://hn.algolia.com/api/v1/search?tags=front_page&page=';
     try {
-        const response = await fetch(url, {
+        const response = await fetch(`${url}${page}`, {
             method: "GET",
             headers: headersList
         });
@@ -15,14 +15,14 @@ export const fetchNewsWithTag = async () => {
         return data;
 
     } catch (error) {
-        console.log('Fetching data from api got reject due to some reason.');
+        console.log('Fetching data from api(tag) got reject due to some reason.');
     }
 };
 
-export const fetchNewsWithQuery = async (query) => {
-    const url = 'http://hn.algolia.com/api/v1/search?query=';
+export const fetchNewsWithQuery = async (query, page) => {
+    const url = `http://hn.algolia.com/api/v1/search?query=${query}&page=${page}`;
     try {
-        const response = await fetch(`${url}${query}`, {
+        const response = await fetch(url, {
             method: "GET",
             headers: headersList
         });

@@ -12,10 +12,11 @@ const Detail = () => {
 
     const getNewsDetail = async () => {
         const data = await fetchSingleNews(Id);
+        console.log(data);
         setDet({
             'author': data.author,
             'date': data.created_at.substr(0, 10),
-            'title': data.title,
+            'title': data.title ? data.title : 'No title Available',
             'link': data.url,
             'points': data.points ? data.points : 0,
             'comments': data.children
